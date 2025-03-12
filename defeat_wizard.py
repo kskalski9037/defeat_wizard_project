@@ -41,6 +41,23 @@ class Warrior(Character):
         damage = self.attack_power * 2
         opponent.health -= damage 
         print(f"{self.name} uses Power Attack on {opponent.name} for {damage} damage!")
+        
+    def charge_attack(self, opponent):
+        damage = self.attack_power * 4
+        opponent.health -= damage
+        print(f"{self.name} used the charge attack and causes {damage} damage to {opponent.name}!")
+    
+    def use_shield(self):
+        print(f"{self.name} shields the opponents attacks and escapes unscathed! Health is {self.health}.")
+        
+    def use_special_ability(self, opponent):
+        choice = input("Please choose a number for the ability you would like: 1= Power Attack, 2= Charge Attack, 3= Use Shield.")    
+        if choice == "1":
+            self.charge_attack(opponent)
+        elif choice == "2":
+            self.use_shield()
+        else:
+            print("Invalid choice.")
 
 # Mage class (inherits from Character)
 class Mage(Character):
@@ -56,6 +73,26 @@ class Mage(Character):
             print(f"{self.name} cast a spell on {opponent.name} for {spell_damage}!")
         else:
             print (f"{self.name} does not have enough mana to cast a spell.")
+            
+    def lightening_attack(self, opponent):
+        damage = self.attack_power * 3
+        opponent.health -= damage
+        print(f"{self.name} used the lightening attack and causes {damage} damage to {opponent.name}!")
+    
+    def mana_shield(self):
+        print(f"{self.name} used the Mana Shield and escapes! Health is {self.health}.")
+        
+    def use_special_ability(self, opponent):
+        choice = input("Please choose a number for the ability you would like: 1= Casts Spell, 2= Lightening Attack, 3= Mana Shield.")    
+        if choice == "1":
+            self.cast_spell(opponent)
+        elif choice == "2":
+            self.lightening_attack(opponent)
+        elif choice == "3":
+            self.mana_shield()
+        else:
+            print("Invalid choice.")      
+    
 
 # EvilWizard class (inherits from Character)
 class EvilWizard(Character):
@@ -110,9 +147,11 @@ class Paladin(Character):
         opponent.health -= damage
         print(f"{self.name} used the Holy Fireball on {opponent.name} causing {damage} damage!")
        
-    def holy_shield(self):
+    def holy_shield(self, opponent):
         defense_boost = random.randint(10, 30)
-        print(f"{self.name} shields the attack and gains {defense_boost} defense boost!")
+        damage = self.attack_power * 2
+        opponent.health -= damage
+        print(f"{self.name} shields the attack, deals {damage} damage to {opponent.name} and gains {defense_boost} defense boost!")
         
     def use_special_ability(self, opponent):
         choice = input("Please choose a number for the ability you would like: 1= Divine Blast, 2= Holy Fireball, 3= Holy Shield.")    
